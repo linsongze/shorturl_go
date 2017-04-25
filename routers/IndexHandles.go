@@ -1,9 +1,9 @@
 package routers
 
 import (
-	"../service"
-	"../utils"
 	"fmt"
+	"github.com/linsongze/shorturl_go/service"
+	"github.com/linsongze/shorturl_go/utils"
 	"github.com/valyala/fasthttp"
 )
 
