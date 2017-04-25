@@ -12,6 +12,4 @@ func main() {
 	routers.InitRoutes(router)
 	log.Fatal(fasthttp.ListenAndServe(":8080", router.Handler))
 
-
 }
-

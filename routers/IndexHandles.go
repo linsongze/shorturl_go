@@ -9,11 +9,10 @@ import (
 
 var storeService service.StoreService = service.NewRamStore()
 
-
 func Index(ctx *fasthttp.RequestCtx) {
 	fmt.Fprintf(ctx, "curl http://host:port/to/short?url=http%3a%2f%2flocalhost%2fxxx%3fa%3da%26b%3db")
 }
-func Short(ctx *fasthttp.RequestCtx){
+func Short(ctx *fasthttp.RequestCtx) {
 	if ctx.QueryArgs().Peek("url") == nil {
 		fmt.Fprintf(ctx, "")
 		return
@@ -25,15 +24,15 @@ func Short(ctx *fasthttp.RequestCtx){
 	}
 	id := storeService.IncAndGet()
 	shortCode := utils.Ten_To_62(id)
-	storeService.Save(shortCode,url)
+	storeService.Save(shortCode, url)
 	fmt.Fprintf(ctx, shortCode)
 }
-func redirect(ctx *fasthttp.RequestCtx){
-	 var sc string =  ctx.UserValue("sc").(string)
-	 url := storeService.Get(sc)
+func redirect(ctx *fasthttp.RequestCtx) {
+	var sc string = ctx.UserValue("sc").(string)
+	url := storeService.Get(sc)
 	if url == "" {
 		ctx.SetStatusCode(404)
 		return
 	}
-	ctx.Redirect(url,302)
+	ctx.Redirect(url, 302)
 }
