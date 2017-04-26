@@ -8,6 +8,7 @@ import (
 )
 
 var storeService service.StoreService = service.NewRamStore()
+//var storeService service.StoreService = service.NewRedisStoreService()
 
 func Index(ctx *fasthttp.RequestCtx) {
 	fmt.Fprintf(ctx, "curl http://host:port/to/short?url=http%3a%2f%2flocalhost%2fxxx%3fa%3da%26b%3db")
